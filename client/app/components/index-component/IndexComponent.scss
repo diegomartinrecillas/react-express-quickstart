@@ -1,0 +1,18 @@
+@import '~styles/base/colors';
+
+.root {
+  background-color: $accent-color;
+  border-color: $text-color;
+  border-style: solid;
+  border-width: 2px;
+  margin: 0 6px;
+  max-width: 400px;
+  padding: 0 20px;
+}
+
+.text {
+  color: $text-color;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+}
