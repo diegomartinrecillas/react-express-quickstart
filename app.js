@@ -20,7 +20,7 @@ var transpiler = webpack(config);
 // Print current node environment in the console
 console.log(`CURRENT ENVIRONMENT: ${process.env.NODE_ENV}\n`);
 
-/*
+/**
 * Webpack Middleware
 * Used to enable Hot Module Replacement when we are in a development environment, this is,
 * being able to reload specific modules when their respective file changes without needing
@@ -38,7 +38,7 @@ if (app.get('env') == 'development') {
     app.use(whm(transpiler));
 }
 
-/*
+/**
 * View Engine Setup
 * Set up of the view engine to be used, JSX in this case.
 */
@@ -46,7 +46,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
-/*
+/**
 * Loggin and Parsing Middleware Setup, this is standard not much to modify.
 */
 app.use(logger('dev'));
@@ -54,13 +54,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-/*
+/**
 * Public Routes
 * All files included inside the public folder will be made avaliable through http requests.
 */
 app.use(express.static(path.join(__dirname, 'public')));
 
-/*
+/**
 * API Routes
 * Important: All API Routes declarations must be done before we delegate control of the routes
 * to the client.
@@ -68,14 +68,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Demo API
 app.use('/api/users', users);
 
-/*
+/**
 * Index View
 * Render Index and delegate all route management to the client, this should always go after we declare
 * all other routes to be used server side, like API's etc.
 */
 app.use('/*', index);
 
-/*
+/**
 * 404 Not Found Route Setup
 * This goes after we have all our Routes declarations, it's essentially a fallback route.
 * In this case everything this will NOT be relevant as we are delegating the route
