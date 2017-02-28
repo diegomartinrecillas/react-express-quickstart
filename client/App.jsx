@@ -7,25 +7,30 @@ import { AppContainer } from 'react-hot-loader';
 import Router from './app/components/router/Router';
 // Tap Event
 import injectTapEventPlugin from 'react-tap-event-plugin';
-// Stylesheets
-import './styles/main.scss';
+// General App Styles
+import './styles/App.scss';
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
 ReactDOM.render(
     <AppContainer>
-        <Router/>
+        <Router />
     </AppContainer>,
     document.getElementById('client')
 );
 
+/**
+ * Hot Module Replacement
+ * Configure the hot-module-replacement plugin so it can automatically refresh 
+ * the modified components without requiring a full reload of the page.
+*/
 if (module.hot) {
     module.hot.accept('./app/components/router/Router', () => {
         const NewRouter = require('./app/components/router/Router').default;
         ReactDOM.render(
             <AppContainer>
-                <NewRouter/>
+                <NewRouter />
             </AppContainer>,
             document.getElementById('client')
         )
@@ -39,20 +44,20 @@ if (module.hot) {
  * See https://github.com/gaearon/react-hot-loader/issues/298
  */
 if (module.hot) {
-  const isString = (val) => {
-      if (typeof val === 'string' || val instanceof String) {
-        return true;
-      } else {
-        return false;
-      }
-  }
-  const orgError = console.error; // eslint-disable-line no-console
-  console.error = (...args) => { // eslint-disable-line no-console
-    if (args && args.length === 1 && isString(args[0]) && args[0].indexOf('You cannot change <Router routes>;') > -1) {
-      // React route changed
-    } else {
-      // Log the error as normally
-      orgError.apply(console, args);
+    const isString = (val) => {
+        if (typeof val === 'string' || val instanceof String) {
+            return true;
+        } else {
+            return false;
+        }
     }
-  };
+    const orgError = console.error; // eslint-disable-line no-console
+    console.error = (...args) => { // eslint-disable-line no-console
+        if (args && args.length === 1 && isString(args[0]) && args[0].indexOf('You cannot change <Router routes>;') > -1) {
+            // React route changed
+        } else {
+            // Log the error as normally
+            orgError.apply(console, args);
+        }
+    };
 }

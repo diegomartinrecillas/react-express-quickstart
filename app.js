@@ -18,7 +18,7 @@ var app = express();
 var transpiler = webpack(config);
 
 // Print current node environment in the console
-console.log(`CURRENT ENVIRONMENT: ${process.env.NODE_ENV}\n`);
+console.log(`ENVIRONMENT: ${process.env.NODE_ENV}\n`);
 
 /**
 * Webpack Middleware
@@ -47,7 +47,7 @@ app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
 /**
-* Loggin and Parsing Middleware Setup, this is standard not much to modify.
+* Loggin and Parsing Middleware Setup, this is a standard configuration not much to modify.
 */
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -56,7 +56,7 @@ app.use(cookieParser());
 
 /**
 * Public Routes
-* All files included inside the public folder will be made avaliable through http requests.
+* All files inside the public folder will be made avaliable through http requests.
 */
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -78,17 +78,14 @@ app.use('/*', index);
 /**
 * 404 Not Found Route Setup
 * This goes after we have all our Routes declarations, it's essentially a fallback route.
-* In this case everything this will NOT be relevant as we are delegating the route
-* management to the client.
+* In this case this will NOT be relevant as we are delegating the route management to the client.
 */
-
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
-
 // Error handler
 app.use((err, req, res) => {
     res.locals.message = err.message;

@@ -7,19 +7,20 @@ export default class Index extends React.Component {
     render() {
         return (
             <Layout title={this.props.title}>
-                <div id='client'/>
+                <div id='client' />
                 {process.env.NODE_ENV == 'production' ? (
                     <div>
-                        <script src='/dist/vendor.js'/>
-                        <script src='/dist/client.js'/>
+                        <script src='/dist/vendor.js' />
+                        <script src='/dist/client.js' />
                     </div>
                 ) : (
-                    <div>
-                        <script src='/dev/client.js'/>
-                    </div>
-                )}
+                        <div>
+                            <script src='/dev/client.js' />
+                        </div>
+                    )}
                 <script
-                    dangerouslySetInnerHTML={{__html:
+                    dangerouslySetInnerHTML={{
+                        __html:
                         `var WebFontConfig = {
                             google: { families: [ 'Roboto:400,300,500:latin' ] }
                         };
@@ -32,7 +33,7 @@ export default class Index extends React.Component {
                             s.parentNode.insertBefore(wf, s);
                         })();`
                     }}
-                    />
+                />
             </Layout>
         );
     }
